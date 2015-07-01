@@ -1,0 +1,202 @@
+﻿<%@ Master Language="VB" CodeFile="MasterSitio.master.vb" Inherits="MasterSitio" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>Instituto Nacional de Estadísticas</title>
+    <script language="javascript" type="text/jscript" src="Recursos/Js/FuncionesGenericas.js"></script>  
+    <link href="Recursos/Css/EstilosGenericos.css" rel="Stylesheet" type="text/css" media="all" />
+<script language="javascript" type="text/javascript">
+
+</script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    
+    <div align=center >
+        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+            <tr valign="top"> 
+                <td align="center" style="height: 419px; color: #3366ff; width: 1000px;" class="tiny">
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                    </asp:ScriptManager>
+                    <table border="0" cellpadding="0" cellspacing="0" style="width: 75px; height:100%" id="TABLE1" language="javascript" onclick="return TABLE1_onclick()">
+                        <tr>
+                            <td align="center" style="height: 55px; text-align: justify;" valign="top" colspan="3">
+                                <table style="width: 1128px; height: 112px">
+                                    <tr>
+                                        <td colspan="1" style="width: 62px; height: 126px">
+                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Recursos/Images/logo.jpg" EnableTheming="False" /></td>
+                                        <td colspan="3" style="height: 126px; width: 1420px; text-align: center;">
+                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Recursos/Images/top.jpg" 
+                                                Width="820px" Height="65px" /><br />
+                                        </td>
+                                        <td style="width: 159px; height: 126px; text-align: right;">
+                                            <asp:Panel ID="pnl_herramientas" runat="server" CssClass="tiny" GroupingText="Cuadro de Herramientas">
+                                                <table>
+                                                    <tr>
+                                                        <td colspan="3" style="width: 57px">
+                                                            &nbsp;&nbsp;
+                                                            <table>
+                                                                <tr>
+                                                                    <td style="width: 400px">
+                                                                    </td>
+                                                                    <td style="width: 229px">
+                                                                    </td>
+                                                                    <td style="width: 100px">
+                                                                        <asp:ImageButton ID="ImageButton4" runat="server" Height="26px" ImageUrl="~/Recursos/Images/Herramientas_Home.JPG"
+                                                                            ToolTip="Ir al Inicio" Width="30px" PostBackUrl="~/Index.aspx" /></td>
+                                                                    <td style="width: 100px">
+                                                                        <asp:ImageButton ID="ImageButton5" runat="server" Height="25px" ImageUrl="~/Recursos/Images/Herramientas_Contacto.JPG"
+                                                                            ToolTip="Formulario de Contacto" Width="27px" /></td>
+                                                                    <td style="width: 23px">
+                                                                        </td>
+                                                                    <td style="width: 3px">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </asp:Panel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu_box" style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px;
+                                vertical-align: top; width: 181px; height: 9px; border-right-width: 0px" valign="middle">
+                                <table style="width: 220px" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="height: 25px">
+                                            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="10pt"
+                                                Text="MENÚ"></asp:Label></td>
+                                        <td style="height: 25px; text-align: right;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="menu_box" colspan="2" style="border-top-width: 0px; border-left-width: 0px;
+                                border-bottom-width: 0px; height: 9px; border-right-width: 0px">
+                                <table style="width: 100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="width: 70%; text-align: left; height: 14px;" >
+                                            &nbsp;<asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Arial" Font-Size="1em" CssClass="tiny" ForeColor="#3333FF">
+                                                <PathSeparatorStyle Font-Bold="True" ForeColor="#507CD1" />
+                                                <CurrentNodeStyle ForeColor="#333333" />
+                                                <NodeStyle Font-Bold="True" ForeColor="#284E98" />
+                                                <RootNodeStyle Font-Bold="True" ForeColor="#507CD1" />
+                                            </asp:SiteMapPath>
+                                            &nbsp;
+                                        </td>
+                                        <td style="width: 20%; text-align: right; height: 14px;">
+                                            <asp:Label ID="lbl_usuario" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="8pt"
+                                                ForeColor="#284E98" Visible="False"></asp:Label></td>
+                                        <td style="text-align: center; width: 91px; height: 14px;">
+                                            <asp:LinkButton ID="lnk_cerrar_session" runat="server" Font-Bold="True" Font-Names="Arial"
+                                                Font-Size="8pt" ForeColor="#284E98" Visible="False" Width="85px" CausesValidation="False">Cerrar Sesión</asp:LinkButton></td>
+                                    </tr>
+                                &nbsp;<asp:Label ID="Label2" runat="server" Font-Bold="True" Style="text-align: center"
+                                                Text="Periodo :" Width="138px" Font-Size="Larger"></asp:Label>
+                                            <asp:Label ID="lbl_periodo" runat="server" Font-Bold="True" Style="text-align: center"
+                                                Text="Periodo " Width="138px" Font-Size="Larger"></asp:Label></table>
+                                &nbsp; &nbsp; &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: gainsboro thin solid; width: 181px; height: 582px;" valign="top">
+                                <asp:Menu ID="menu_sistema" runat="server" StaticDisplayLevels="3" Width="220px">
+                                    <LevelMenuItemStyles>
+                                        <asp:MenuItemStyle CssClass="left_menu" Font-Underline="False" />
+                                        <asp:MenuItemStyle CssClass="left_sub_menu" Font-Underline="False" />
+                                        <asp:MenuItemStyle CssClass="left_sub_sub_menu" Font-Underline="False" />
+                                    </LevelMenuItemStyles>
+                                </asp:Menu>
+                            </td>
+                            <td style="width: 5px; border-right-width: thin; border-right-color: gainsboro; height: 582px;" valign="top">
+                                &nbsp;&nbsp;
+                            </td>
+                            <td valign="top" style="width: 111%; height: 582px;">
+                                <div style="width: 900px; height: 568px; text-align: center;">
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </asp:ContentPlaceHolder>
+                                    <asp:Panel ID="pnl_contacto" runat="server" CssClass="tiny" Style="border-right: black 2px solid;
+                                        padding-right: 70px; border-top: black 2px solid; display: none; padding-left: 70px;
+                                        padding-bottom: 20px; border-left: black 2px solid; width: 350px; padding-top: 20px;
+                                        border-bottom: black 2px solid; background-color: white" Width="416px">
+                                        <span style="color: #ff0000">
+                                            <table style="width: 450px">
+                                                <tr>
+                                                    <td class="tiny" colspan="2" style="text-align: left">
+                                                        <span style="color: #000000"><strong>Formulario de Contacto</strong></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" colspan="2" style="height: 1px">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 341px; text-align: justify">
+                                                        Nombre:</td>
+                                                    <td style="width: 255px; text-align: justify">
+                                                        <asp:TextBox ID="txt_nombre" runat="server"></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 341px; text-align: justify">
+                                                        Email:</td>
+                                                    <td style="width: 255px; text-align: justify">
+                                                        <asp:TextBox ID="txt_email" runat="server"></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 341px; text-align: justify">
+                                                        Duda o Consulta:</td>
+                                                    <td style="width: 255px; text-align: justify">
+                                                        <asp:TextBox ID="txt_duda_consulta" runat="server" Height="40px" TextMode="MultiLine"
+                                                            Width="168px"></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <asp:Label ID="lbl_resultado" runat="server" CssClass="tiny" ForeColor="#006633"></asp:Label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 341px">
+                                                    </td>
+                                                    <td style="width: 255px">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 341px; text-align: right">
+                                                        <asp:Button ID="btn_enviar" runat="server" CssClass="Boton" Text="Enviar Consulta" /></td>
+                                                    <td style="width: 255px; text-align: justify">
+                                                        <asp:Button ID="btn_Salir" runat="server" CausesValidation="False" CssClass="Boton"
+                                                            Text="Salir" Width="80px" /></td>
+                                                </tr>
+                                            </table>
+                                        </span>
+                                    </asp:Panel>
+                                    &nbsp;<cc1:modalpopupextender id="ModalPopupExtender1" runat="server" backgroundcssclass="modalBackground"
+                                        popupcontrolid="pnl_contacto" targetcontrolid="ImageButton5"></cc1:modalpopupextender>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu_box" colspan="3" style="height: 10px; width: 1950px;">
+                            </td>
+                        </tr>
+                    </table>
+                    <span style="color: #3333ff">
+                        <br />
+                        Instituto Nacional de Estadísticas • ine@ine.cl • Paseo Bulnes 418, Santiago de
+                        Chile
+                        <br />
+                        Sitio Implementado por la Sección de Proyectos Especiales</span></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

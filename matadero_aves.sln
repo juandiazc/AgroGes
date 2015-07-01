@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\fuentes\matadero_aves\", "..\matadero_aves", "{E86CE91A-23D1-442B-A343-610F8AC2C79B}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""$/MATADERO_AVES", KCODAAAA"
+		SccAuxPath = ""
+		SccLocalPath = "."
+		SccProvider = "MSSCCI:Microsoft Visual SourceSafe"
+		Debug.AspNetCompiler.VirtualPath = "/matadero_aves"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\fuentes\matadero_aves\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\matadero_aves\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/matadero_aves"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\fuentes\matadero_aves\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\matadero_aves\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2781"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccWebProject0 = true
+		SccProjectUniqueName0 = .
+		SccProjectName0 = \u0022$/MATADERO_AVES\u0022,\u0020KCODAAAA
+		SccLocalPath0 = C:\\fuentes\\matadero_aves
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+		SccProjectEnlistmentChoice0 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E86CE91A-23D1-442B-A343-610F8AC2C79B}.Debug|.NET.ActiveCfg = Debug|.NET
+		{E86CE91A-23D1-442B-A343-610F8AC2C79B}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="" title=""  description="">
+        <siteMapNode url="/SitioGenericoSPE/Index.aspx" title="Estas en: Inicio"  description="" />
+        <siteMapNode url="/SitioGenericoSPE/Modulo Administracion/frmMantenedorUsuario.aspx" title="Estas en: Mantenedor de Usuarios"  description="" />
+		<siteMapNode url="/SitioGenericoSPE/Modulo Administracion/frmMonitoreo.aspx" title="Estas en: Monitoreo de Sistema"  description="" />
+        <siteMapNode url="/SitioGenericoSPE/Modulo Informaciones/frmNoticias.aspx" title="Estas en: Publicar Noticia"  description="" />
+        <siteMapNode url="/SitioGenericoSPE/Modulo Informaciones/frmPreguntas.aspx" title="Estas en: Formular Pregunta"  description="" />
+        <siteMapNode url="/SitioGenericoSPE/Modulo Informaciones/frmRespuestas.aspx" title="Estas en: Ver Respuestas"  description="" />
+        </siteMapNode>
+</siteMap>

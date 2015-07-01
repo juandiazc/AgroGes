@@ -1,0 +1,6 @@
+SELECT ROL, Count(*) AS DUPLICADOS
+FROM PreDirectorioAsignacion
+GROUP BY ROL
+HAVING (((Count(*))>1)) 
+
+SELECT * FROM PreDirectorioAsignacion WHERE ROL = 116308 

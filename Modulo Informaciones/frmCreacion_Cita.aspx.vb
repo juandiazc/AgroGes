@@ -296,7 +296,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 End If
             End If
         Next
-
+        'HOla prueba 
         CN.Open()
             Select Case e.CommandName
                 Case "Eliminar"
