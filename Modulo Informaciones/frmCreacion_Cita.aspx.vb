@@ -270,7 +270,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Dim a1 As String = drop_sistema.SelectedIndex
         Dim a2 As String ' = drop_hito.SelectedIndex
         Dim a3 As String = drop_año.SelectedIndex
-        Dim a4 As String = drop_producto.SelectedIndex
+        Dim a4 As String ' = drop_producto.SelectedIndex
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
         Dim aux As String
