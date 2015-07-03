@@ -4,7 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <head>
-<link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link href="../Recursos/jquery-ui/timepicker/jquery.ui.timepicker.css" rel="stylesheet" type="text/css"  />
 </head>
   <!--Hoja de estilos del calendario
@@ -146,6 +145,7 @@
         </td>
         <td style="width: 337px; height: 16px; text-align: left">
             <asp:Button ID="btn_asignar" runat="server" CssClass="Boton" Text="Agregar operación de elementos seleccionados" Width="255px"  />
+            <asp:Button ID="btn_editar" runat="server" CssClass="Boton" Text="Editar operación de elementos seleccionados" Width="255px" Visible="False"  />
             <asp:Button ID="btn_eliminar" runat="server" CssClass="Boton" Text="Eliminar operación de elementos seleccionados" Width="255px" Visible="False"  /></td>
         <td style="width: 24px; height: 16px; text-align: left">
         </td>
@@ -434,11 +434,123 @@
                                     </asp:Panel>
                                 <cc1:modalpopupextender id="ModalPopupExtender3" Enabled="True" runat="server" backgroundcssclass="modalBackground"
                                         popupcontrolid="pnl_contacto_2" targetcontrolid="btn_asignar"></cc1:modalpopupextender>        
+ 
+                                             <asp:Panel ID="pnl_contacto_3" runat="server" CssClass="tiny" Style="border-right: black 2px solid;
+                                        padding-right: 70px; border-top: black 2px solid; display: none; padding-left: 70px;
+                                        padding-bottom: 20px; border-left: black 2px solid; width: 350px; padding-top: 20px;
+                                        border-bottom: black 2px solid; background-color: white" Width="416px">
+                                        <span style="color: #ff0000">
+                                            <table style="width: 300px">                                               
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        <asp:Label ID="Label1" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox1"  runat="server" Text=''></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Lugar</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox2"  runat="server" Text=''></asp:TextBox></td>
+                                                </tr>    
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Fecha Realización</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>     
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Hora de Inicio</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Hora de Termino</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox5" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>                                                
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Comentarios</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox6" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 130px; text-align: right">
+                                                        <asp:Button ID="Button5" runat="server" CssClass="Boton" Text="Agregar Cita" Width="50px"   /></td>                                                    
+                                                    <td style="width: 130px; text-align: right">
+                                                        <asp:Button ID="Button6" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
+                                                </tr>
+                                            </table>
+                                        </span>
+                                    </asp:Panel>
+                                <cc1:modalpopupextender id="ModalPopupExtender4" Enabled="True" runat="server" backgroundcssclass="modalBackground"
+                                        popupcontrolid="pnl_contacto_3" targetcontrolid="btn_eliminar"></cc1:modalpopupextender>           
+              <asp:Panel ID="pnl_contacto_4" runat="server" CssClass="tiny" Style="border-right: black 2px solid;
+                                        padding-right: 70px; border-top: black 2px solid; display: none; padding-left: 70px;
+                                        padding-bottom: 20px; border-left: black 2px solid; width: 350px; padding-top: 20px;
+                                        border-bottom: black 2px solid; background-color: white" Width="416px">
+                                        <span style="color: #ff0000">
+                                            <table style="width: 300px">                                               
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        <asp:Label ID="lbl_nombre_2" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox7"  runat="server" Text=''></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Lugar</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox8"  runat="server" Text=''></asp:TextBox></td>
+                                                </tr>    
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Fecha Realización</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox9" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>     
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Hora de Inicio</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox10" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Hora de Termino</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox11" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                </tr>                                                
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        Comentarios</td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:TextBox ID="TextBox12" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 130px; text-align: right">
+                                                        <asp:Button ID="Button7" runat="server" CssClass="Boton" Text="Agregar Cita" Width="50px"   /></td>                                                    
+                                                    <td style="width: 130px; text-align: right">
+                                                        <asp:Button ID="Button8" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
+                                                </tr>
+                                            </table>
+                                        </span>
+                                    </asp:Panel>
+                                <cc1:modalpopupextender id="ModalPopupExtender5" Enabled="True" runat="server" backgroundcssclass="modalBackground"
+                                        popupcontrolid="pnl_contacto_4" targetcontrolid="btn_editar"></cc1:modalpopupextender>           
+    
     </asp:Panel>
+
+
         </td>
+     
         <td style="width: 24px; height: 16px; text-align: left">
         </td>
     </tr>
+
     <tr>
         <td class="tiny" style="width: 102px; height: 16px; text-align: left">
         </td>

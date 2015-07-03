@@ -270,7 +270,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Dim a1 As String = drop_sistema.SelectedIndex
         Dim a2 As String ' = drop_hito.SelectedIndex
         Dim a3 As String = drop_año.SelectedIndex
-        Dim a4 As String ' = drop_producto.SelectedIndex
+        Dim a4 As String = drop_producto.SelectedIndex
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
         Dim aux As String
@@ -568,6 +568,28 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Listar_GANTT()
     End Sub
     Protected Sub btn_eliminar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_eliminar.Click
-        'Desplegable con opciones
+        If drop_sistema.SelectedIndex = 0 Then
+            MensajeBox("Debe seleccionar sistema", True)
+        ElseIf drop_operacion.SelectedIndex = 0 Then
+            MensajeBox("Debe seleccionar operación", True)
+            pnl_contacto_3.Visible = False
+            pnl_contacto_3.Enabled = False
+        Else
+            pnl_contacto_3.Visible = True
+            pnl_contacto_3.Enabled = True
+        End If
+    End Sub
+
+    Protected Sub btn_editar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_editar.Click
+        If drop_sistema.SelectedIndex = 0 Then
+            MensajeBox("Debe seleccionar sistema", True)
+        ElseIf drop_operacion.SelectedIndex = 0 Then
+            MensajeBox("Debe seleccionar operación", True)
+            pnl_contacto_4.Visible = False
+            pnl_contacto_4.Enabled = False
+        Else
+            pnl_contacto_4.Visible = True
+            pnl_contacto_4.Enabled = True
+        End If
     End Sub
 End Class
