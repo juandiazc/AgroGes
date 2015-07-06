@@ -443,45 +443,45 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="Label1" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                        <asp:Label ID="lbl_operacion_2" runat="server" Text="" Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox1"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="lbl_nombre_2"  runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Lugar</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox2"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_lugar3"  runat="server" Text=''></asp:TextBox></td>
                                                 </tr>    
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Fecha Realización</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_fecha3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>     
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Inicio</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_hora_3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Termino</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox5" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_horaf_3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>                                                
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Comentarios</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox6" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_comen_3" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="Button5" runat="server" CssClass="Boton" Text="Agregar Cita" Width="50px"   /></td>                                                    
+                                                        <asp:Button ID="btn_eliminar_1" runat="server" CssClass="Boton" Text="Eliminar" Width="50px"   /></td>                                                    
                                                     <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="Button6" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
+                                                        <asp:Button ID="btn_salir_3" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
                                                 </tr>
                                             </table>
                                         </span>
@@ -496,45 +496,45 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_nombre_2" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                        <asp:Label ID="lbl_operacion_3" runat="server" Text="" Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox7"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="lbl_nombre_3"  runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Lugar</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox8"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_lugar4"  runat="server" Text=''></asp:TextBox></td>
                                                 </tr>    
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Fecha Realización</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox9" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_fecha4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>     
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Inicio</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox10" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_hora_4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Termino</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox11" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_horaf_4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>                                                
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Comentarios</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox12" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_comen_4" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="Button7" runat="server" CssClass="Boton" Text="Agregar Cita" Width="50px"   /></td>                                                    
+                                                        <asp:Button ID="btn_editar_1" runat="server" CssClass="Boton" Text="Editar" Width="50px"   /></td>                                                    
                                                     <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="Button8" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
+                                                        <asp:Button ID="btn_salir_4" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
                                                 </tr>
                                             </table>
                                         </span>
