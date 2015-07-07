@@ -636,7 +636,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
                         Dim exeNUMMAX1 As New DataTable()
                         preexeNUMMAX1.Fill(exeNUMMAX1)
                         If exeNUMMAX1.Rows.Count = 0 Then
-                            CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
+                            CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
+                            'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
                             Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
                             Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                             Dim exeNUMMAX As New DataTable()

@@ -442,42 +442,6 @@
                                         <span style="color: #ff0000">
                                             <table style="width: 300px">                                               
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion_2" runat="server" Text="" Width="140px"></asp:Label></td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="lbl_nombre_2"  runat="server" Text=''></asp:TextBox></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Lugar</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_lugar3"  runat="server" Text=''></asp:TextBox></td>
-                                                </tr>    
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Fecha Realización</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_fecha3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>     
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Inicio</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_hora_3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Termino</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horaf_3" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>                                                
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Comentarios</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_comen_3" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
-                                                </tr>
-                                                <tr>
                                                     <td style="width: 130px; text-align: right">
                                                         <asp:Button ID="btn_eliminar_1" runat="server" CssClass="Boton" Text="Eliminar" Width="50px"   /></td>                                                    
                                                     <td style="width: 130px; text-align: right">
