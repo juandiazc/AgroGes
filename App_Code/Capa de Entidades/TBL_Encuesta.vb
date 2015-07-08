@@ -17,6 +17,7 @@ public class TBL_Encuesta
     Private PerfilIngreso As String
     Private FechaIngreso As DateTime
     Private id As String
+    Private ip As String
     Private nombre_informante As String
     Private sexo As String
     Private rut As String
@@ -610,6 +611,14 @@ public class TBL_Encuesta
         End Get
         Set(ByVal value As String)
             id = value
+        End Set
+    End Property
+    Public Property propiedad_ip() As String
+        Get
+            Return ip
+        End Get
+        Set(ByVal value As String)
+            ip = value
         End Set
     End Property
     Public Property propiedad_nombre_informante() As String

@@ -23,7 +23,7 @@ Partial Class Modulo_Ingreso_de_Datos_frmEncuesta
 
     'Dim cierre_mes As New CierreMesGesBLL
     'Dim campo_cierre_mes As New CierreMesGesBOL
-
+    Dim CN As New SqlClient.SqlConnection("Server=TAMARUGO;database=BASES_AGROPECUARIAS_T;uid=usuarioagropecuarias;pwd=usuarioagropecuarias")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then      
@@ -110,16 +110,30 @@ Partial Class Modulo_Ingreso_de_Datos_frmEncuesta
         End If
     End Sub
     Protected Sub btn_guardar_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+        Dim CONSULTAENC1 As String
+        Dim id As String = txt_id.Text
         If valida() = True Then
-            If graba(0) = True Then
-                MensajeBox("Registro Grabado con Exito", True)
-                limpia(pnl_encuesta)
+            CONSULTAENC1 = "SELECT id FROM TBL_Encuesta where id=" + id
+            Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
+            Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
+            Dim exeNUMMAX1 As New DataTable()
+            preexeNUMMAX1.Fill(exeNUMMAX1)
+            If exeNUMMAX1.Rows.Count = 0 Then
+                If graba(0) = True Then
+                    MensajeBox("Registro Grabado con Exito", True)
+                    limpia(pnl_encuesta)
+                Else
+                    MensajeBox("Error al Grabar el Registro", True)
+                    ' If elimina() = False Then
+                    ' MensajeBox("Error al Eliminar el Registro", True)
+                    'End If
+                End If
+
             Else
-                MensajeBox("Error al Grabar el Registro", True)
-                ' If elimina() = False Then
-                ' MensajeBox("Error al Eliminar el Registro", True)
-                'End If
+                MensajeBox("El id ya se encuentra en la BD. Genere nuevo id.", True)
             End If
+            
+
         End If
     End Sub
     Function Trans(ByVal caja As String)
@@ -136,6 +150,7 @@ Partial Class Modulo_Ingreso_de_Datos_frmEncuesta
         If txt_id.Text = "" Then
             generar_id()
         End If
+        campo_encuesta.propiedad_ip = Request.UserHostAddress
         campo_encuesta.propiedad_PerfilIngreso = Session("usuario")
         campo_encuesta.propiedad_FechaIngreso = Today
         campo_encuesta.propiedad_id = txt_id.Text

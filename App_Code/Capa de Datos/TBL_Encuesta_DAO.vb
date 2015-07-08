@@ -20,7 +20,7 @@ public class TBL_Encuesta_DAO
        Try
            Dim sp As New StoredProcedure_class("PA_CLS_TBL_Encuesta_INSERTAR")
             sp.AgregarParametro("PerfilIngreso", TBL.propiedad_PerfilIngreso)
-            sp.AgregarParametro("FechaIngreso", TBL.propiedad_FechaIngreso)
+            sp.AgregarParametro("FechaIngreso", TBL.propiedad_FechaIngreso)            
             sp.AgregarParametro("id", TBL.propiedad_id)
             sp.AgregarParametro("nombre_informante", TBL.propiedad_nombre_informante)
             sp.AgregarParametro("sexo", TBL.propiedad_sexo)
@@ -1178,6 +1178,7 @@ public class TBL_Encuesta_DAO
             sp.AgregarParametro("PerfilIngreso", TBL.propiedad_PerfilIngreso)
             sp.AgregarParametro("FechaIngreso", TBL.propiedad_FechaIngreso)
             sp.AgregarParametro("id", TBL.propiedad_id)
+            sp.AgregarParametro("ip", TBL.propiedad_ip)
             sp.AgregarParametro("nombre_informante", TBL.propiedad_nombre_informante)
             sp.AgregarParametro("sexo", TBL.propiedad_sexo)
             sp.AgregarParametro("rut", TBL.propiedad_rut)
