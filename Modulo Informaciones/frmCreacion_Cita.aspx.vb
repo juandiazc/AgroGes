@@ -775,4 +775,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
         End If
         Listar_GANTT()
     End Sub
+
+    Protected Sub btn_salir_4_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_salir_4.Click
+        'hola
+    End Sub
 End Class

@@ -113,26 +113,26 @@ Partial Class Modulo_Ingreso_de_Datos_frmEncuesta
         Dim CONSULTAENC1 As String
         Dim id As String = txt_id.Text
         If valida() = True Then
-            CONSULTAENC1 = "SELECT id FROM TBL_Encuesta where id=" + id
-            Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
-            Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
-            Dim exeNUMMAX1 As New DataTable()
-            preexeNUMMAX1.Fill(exeNUMMAX1)
-            If exeNUMMAX1.Rows.Count = 0 Then
-                If graba(0) = True Then
-                    MensajeBox("Registro Grabado con Exito", True)
-                    limpia(pnl_encuesta)
-                Else
-                    MensajeBox("Error al Grabar el Registro", True)
-                    ' If elimina() = False Then
-                    ' MensajeBox("Error al Eliminar el Registro", True)
-                    'End If
-                End If
-
+            'CONSULTAENC1 = "SELECT id FROM TBL_Encuesta where id=" + id
+            'Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
+            'Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
+            ' Dim exeNUMMAX1 As New DataTable()
+            '  preexeNUMMAX1.Fill(exeNUMMAX1)
+            '   If exeNUMMAX1.Rows.Count = 0 Then
+            If graba(0) = True Then
+                MensajeBox("Registro Grabado con Exito", True)
+                limpia(pnl_encuesta)
             Else
-                MensajeBox("El id ya se encuentra en la BD. Genere nuevo id.", True)
+                MensajeBox("Error al Grabar el Registro", True)
+                ' If elimina() = False Then
+                ' MensajeBox("Error al Eliminar el Registro", True)
+                'End If
             End If
-            
+
+            '    Else
+            '         MensajeBox("El id ya se encuentra en la BD. Genere nuevo id.", True)
+            '      End If
+
 
         End If
     End Sub

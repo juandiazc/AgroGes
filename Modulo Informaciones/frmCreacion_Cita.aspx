@@ -4,7 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <head>
-<link href="../Recursos/jquery-ui/timepicker/jquery.ui.timepicker.css" rel="stylesheet" type="text/css"  />
 </head>
   <!--Hoja de estilos del calendario
   <link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -74,6 +73,18 @@
     }
 </script>
      
+         <script type="text/javascript">
+        $(function () {
+ 
+            $('#btn_salir').click(function (e) {
+ 
+                $('#lbl_operacion1').text('Prueba');
+ 
+                return true;
+            });
+ 
+        });
+    </script>
 <asp:Panel id="Pnl_Noticia" runat="server" CssClass="tiny" GroupingText="" HorizontalAlign="Center"><table style="WIDTH: 872px"><tbody>
 
          <tr>
@@ -145,8 +156,8 @@
         </td>
         <td style="width: 337px; height: 16px; text-align: left">
             <asp:Button ID="btn_asignar" runat="server" CssClass="Boton" Text="Agregar operación de elementos seleccionados" Width="255px"  />
-            <asp:Button ID="btn_editar" runat="server" CssClass="Boton" Text="Editar operación de elementos seleccionados" Width="255px" Visible="False"  />
-            <asp:Button ID="btn_eliminar" runat="server" CssClass="Boton" Text="Eliminar operación de elementos seleccionados" Width="255px" Visible="False"  /></td>
+            <asp:Button ID="btn_editar" runat="server" CssClass="Boton" Text="Editar operación de elementos seleccionados" Width="255px"  />
+            <asp:Button ID="btn_eliminar" runat="server" CssClass="Boton" Text="Eliminar operación de elementos seleccionados" Width="255px"  /></td>
         <td style="width: 24px; height: 16px; text-align: left">
         </td>
     </tr>
@@ -460,39 +471,22 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion_3" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                        ID</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="lbl_nombre_3"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="lbl_nombre_3"  runat="server" Text='' Width="54px"></asp:TextBox>
+                                                        <asp:Button ID="btn_cargar" runat="server" CssClass="Boton" Text="..." Width="50px"   /></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Lugar</td>
+                                                        Fecha de Inicio</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_lugar4"  runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_fechai" runat="server" CssClass="tiny2" Text=""></asp:TextBox></td>
                                                 </tr>    
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Fecha Realización</td>
+                                                        Fecha de Término</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_fecha4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>     
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Inicio</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_hora_4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Termino</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horaf_4" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
-                                                </tr>                                                
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Comentarios</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_comen_4" runat="server" Text='' Height="52px" TextMode="MultiLine"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_fechat" runat="server" CssClass="tiny2" Text=""></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 130px; text-align: right">
