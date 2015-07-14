@@ -4,6 +4,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <head>
+<link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="../Recursos/jquery-ui/timepicker/jquery.ui.timepicker.css" />
 </head>
   <!--Hoja de estilos del calendario
   <link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />

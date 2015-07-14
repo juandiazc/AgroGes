@@ -40,8 +40,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
 
         For Each row As GridViewRow In Grid_GANTT.Rows
             If CType(row.FindControl("lbl_operacion"), Label).Text = "" Then
-                CType(row.FindControl("lbl_operacion1"), Label).Text = "1"
-                CType(row.FindControl("lbl_operacion2"), Label).Text = "1"
+                CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
+                CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
             Else
                 CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
                 CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
@@ -57,7 +57,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
         Dim exeNUMMAX As New DataTable()
         preexeNUMMAX.Fill(exeNUMMAX)
-
 
         drop_sistema.DataSource = exeNUMMAX
         drop_sistema.DataValueField = exeNUMMAX.Columns(0).ToString
@@ -267,10 +266,10 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Dim c As String
         Dim a5 As String
 
-        Dim a1 As String = drop_sistema.SelectedIndex
+        Dim a1 As String '= drop_sistema.SelectedIndex
         Dim a2 As String ' = drop_hito.SelectedIndex
-        Dim a3 As String = drop_año.SelectedIndex
-        Dim a4 As String = drop_producto.SelectedIndex
+        Dim a3 As String '= drop_año.SelectedIndex
+        Dim a4 As String ' = drop_producto.SelectedIndex
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
         Dim aux As String
@@ -299,30 +298,34 @@ Partial Class Modulo_Informaciones_frmGANTT1
         'HOla prueba 
         CN.Open()
             Select Case e.CommandName
-                Case "Eliminar"
-                    'CapaEntidadGANTT.propiedad_ID = CType(fila.FindControl("lbl_Sistema"), Label).Text
-                    CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_S=" + CType(fila.FindControl("lbl_Sistema"), Label).Text + " AND ID_P=" + CType(fila.FindControl("lbl_producto"), Label).Text + " AND ID_A=" + CType(fila.FindControl("lbl_año"), Label).Text + " AND ID_H=" + CType(fila.FindControl("lbl_Hito"), Label).Text + " AND ID_Ac='" + CType(fila.FindControl("lbl_Actividades1"), Label).Text + "' AND Operacion='" + aux + "'"
-                    Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                    Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                    Dim exeNUMMAX As New DataTable()
-                    preexeNUMMAX.Fill(exeNUMMAX)
-                    CType(fila.FindControl("chkRow"), CheckBox).Checked = False
-                    'Listar_GANTT()
-                Case "AgregarD"
-                    a1 = CType(fila.FindControl("lbl_Sistema"), Label).Text
-                    a3 = CType(fila.FindControl("lbl_año"), Label).Text
-                    a4 = CType(fila.FindControl("lbl_producto"), Label).Text
-                    c = CType(fila.FindControl("lbl_Actividades1"), Label).Text
-                    a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
-                    a5 = CType(fila.FindControl("lbl_Detalle_Actividad"), Label).Text
-
+            Case "Eliminar"
+                a1 = CType(fila.FindControl("lbl_Sistema"), Label).Text
+                a3 = CType(fila.FindControl("lbl_año"), Label).Text
+                a4 = CType(fila.FindControl("lbl_producto"), Label).Text
+                c = CType(fila.FindControl("lbl_Actividades1"), Label).Text
+                a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
+                a5 = CType(fila.FindControl("lbl_ID_Operacion"), Label).Text
+                'CapaEntidadGANTT.propiedad_ID = CType(fila.FindControl("lbl_Sistema"), Label).Text
+                CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_S=" + a1 + " AND ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_H=" + a2 + " AND ID_Ac='" + c + "' AND ID_op='" + a5 + "'"
+                Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
+                Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
+                Dim exeNUMMAX As New DataTable()
+                preexeNUMMAX.Fill(exeNUMMAX)
+                CType(fila.FindControl("chkRow"), CheckBox).Checked = False
+                'Listar_GANTT()
+            Case "AgregarD"
+                a1 = CType(fila.FindControl("lbl_Sistema"), Label).Text
+                a3 = CType(fila.FindControl("lbl_año"), Label).Text
+                a4 = CType(fila.FindControl("lbl_producto"), Label).Text
+                c = CType(fila.FindControl("lbl_Actividades1"), Label).Text
+                a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
+                a5 = CType(fila.FindControl("lbl_Detalle_Actividad"), Label).Text
                 CONSULTAENC1 = "SELECT CAST (CASE WHEN MAX(gac.ID_op) IS NULL THEN 1 ELSE MAX(gac.ID_op)+1 END AS Varchar(10)) AS ID_op FROM GES_GANTT_ASIGNAR_CITA gac"
                 Dim NUMMAXPES2 As New SqlCommand(CONSULTAENC1, CN)
                 Dim preexeNUMMAX2 As New SqlDataAdapter(NUMMAXPES2)
                 Dim exeNUMMAX2 As New DataTable()
                 preexeNUMMAX2.Fill(exeNUMMAX2)
                 Id_op = exeNUMMAX2.Rows(0).Item("ID_op").ToString
-
                 If CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex <> 0 Then
                     CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "'"
                 ElseIf CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex = 0 Then
@@ -332,27 +335,35 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 End If
 
                 Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
-                    Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
-                    Dim exeNUMMAX1 As New DataTable()
-                    preexeNUMMAX1.Fill(exeNUMMAX1)
-                    If exeNUMMAX1.Rows.Count = 0 Then
+                Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
+                Dim exeNUMMAX1 As New DataTable()
+                preexeNUMMAX1.Fill(exeNUMMAX1)
+                If exeNUMMAX1.Rows.Count = 0 Then
                     CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + CType(fila.FindControl("txt_nombre_cita1"), TextBox).Text + "','" + CType(fila.FindControl("txt_lugar1"), TextBox).Text + "','" + CType(fila.FindControl("txt_fecha_r1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horai1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horat1"), TextBox).Text + "','" + CType(fila.FindControl("text_coment1"), TextBox).Text + "','" + aux + "'"
-                        Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                        Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                        Dim exeNUMMAX As New DataTable()
-                        preexeNUMMAX.Fill(exeNUMMAX)
-                    Else
-                    MensajeBox("No se ha asignado la operación: " + CType(fila.FindControl("txt_nombre_cita1"), Label).Text + " ya sea porque existe o porque no ha seleccionado cita en la lista desplegable.", True)
-                    End If
-                    CType(fila.FindControl("chkRow"), CheckBox).Checked = True
-                    'Listar_GANTT()
-                Case "Modificar"
-                CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET Nombre_cita='" + CType(fila.FindControl("txt_nombre_cita"), TextBox).Text + "', Lugar='" + CType(fila.FindControl("txt_lugar"), TextBox).Text + "', Fecha_Realizacion='" + CType(fila.FindControl("txt_fecha_r1"), TextBox).Text + "',Hora_Inicio='" + CType(fila.FindControl("txt_horai"), TextBox).Text + "',Hora_Termino='" + CType(fila.FindControl("txt_horat"), TextBox).Text + "',Comentarios='" + CType(fila.FindControl("text_coment1"), TextBox).Text + "' WHERE ID_S=" + CType(fila.FindControl("lbl_Sistema"), Label).Text + " AND ID_P=" + CType(fila.FindControl("lbl_producto"), Label).Text + " AND ID_A=" + CType(fila.FindControl("lbl_año"), Label).Text + " AND ID_H=" + CType(fila.FindControl("lbl_Hito"), Label).Text + " AND ID_Ac='" + CType(fila.FindControl("lbl_Actividades1"), Label).Text + "' AND Operacion='" + aux + "'"
                     Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
                     Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                     Dim exeNUMMAX As New DataTable()
                     preexeNUMMAX.Fill(exeNUMMAX)
-                    'Listar_GANTT()
+                Else
+                    MensajeBox("No se ha asignado la operación: " + CType(fila.FindControl("txt_nombre_cita1"), Label).Text + " ya sea porque existe o porque no ha seleccionado cita en la lista desplegable.", True)
+                End If
+                CType(fila.FindControl("chkRow"), CheckBox).Checked = True
+                'Listar_GANTT()
+            Case "Modificar"
+                a1 = CType(fila.FindControl("lbl_Sistema"), Label).Text
+                a3 = CType(fila.FindControl("lbl_año"), Label).Text
+                a4 = CType(fila.FindControl("lbl_producto"), Label).Text
+                c = CType(fila.FindControl("lbl_Actividades1"), Label).Text
+                a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
+                a5 = CType(fila.FindControl("lbl_ID_Operacion"), Label).Text
+
+
+                CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET Nombre_cita='" + CType(fila.FindControl("txt_nombre_cita"), TextBox).Text + "', Lugar='" + CType(fila.FindControl("txt_lugar"), TextBox).Text + "', Fecha_Realizacion='" + CType(fila.FindControl("txt_fecha_r"), TextBox).Text + "',Hora_Inicio='" + CType(fila.FindControl("txt_horai"), TextBox).Text + "',Hora_Termino='" + CType(fila.FindControl("txt_horat"), TextBox).Text + "',Comentarios='" + CType(fila.FindControl("text_coment1"), TextBox).Text + "' WHERE ID_S=" + a1 + " AND ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_H=" + a2 + " AND ID_Ac='" + c + "' AND ID_op='" + a5 + "'"
+                Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
+                Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
+                Dim exeNUMMAX As New DataTable()
+                preexeNUMMAX.Fill(exeNUMMAX)
+                'Listar_GANTT()
                 Case "Salir"
                     
         End Select
@@ -578,7 +589,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
             pnl_contacto_3.Enabled = True
         End If
     End Sub
-    Protected Sub btn_editar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_editar.Click
+    Protected Sub btn_editar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_editar.Click        
         If drop_sistema.SelectedIndex = 0 Then
             MensajeBox("Debe seleccionar sistema", True)
         ElseIf drop_operacion.SelectedIndex = 0 Then
@@ -590,7 +601,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
             pnl_contacto_4.Enabled = True
         End If
     End Sub
-
     Protected Sub btn_eliminar_1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_eliminar_1.Click
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
@@ -613,77 +623,70 @@ Partial Class Modulo_Informaciones_frmGANTT1
         preexeNUMMAX2.Fill(exeNUMMAX2)
         Id_op = exeNUMMAX2.Rows(0).Item("ID_op").ToString
 
-        If drop_operacion.SelectedIndex <> 0 And txt_nombre_cita2.Text <> "" And txt_lugar2.Text <> "" And txt_fecha_r2.Text <> "" And txt_horai2.Text <> "" And txt_horat2.Text <> "" Then
-            CN.Open()
-            For Each row As GridViewRow In Grid_GANTT.Rows
-                If row.RowType = DataControlRowType.DataRow Then
-                    Dim chkRow As CheckBox = TryCast(row.Cells(1).FindControl("chkRow"), CheckBox)
-                    If chkRow.Checked Then
-                        a1 = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
-                        a3 = CType(row.Cells(1).FindControl("lbl_año"), Label).Text
-                        a4 = CType(row.Cells(1).FindControl("lbl_producto"), Label).Text
-                        c = CType(row.Cells(1).FindControl("lbl_Actividades1"), Label).Text
-                        a2 = CType(row.Cells(1).FindControl("lbl_Hito"), Label).Text
-                        a5 = CType(row.Cells(1).FindControl("lbl_Detalle_Actividad"), Label).Text
-                        'lbl_Nombre_operacion
-                        If CType(row.Cells(1).FindControl("lbl_Nombre_operacion"), Label).Text = "" Then
-                            CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "'"
-                        Else
-                            CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "' AND Nombre_Cita='" + CType(row.Cells(1).FindControl("txt_nombre_cita1"), TextBox).Text + "'"
-                        End If
-                        Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
-                        Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
-                        Dim exeNUMMAX1 As New DataTable()
-                        preexeNUMMAX1.Fill(exeNUMMAX1)
-                        If exeNUMMAX1.Rows.Count = 0 Then
-                            CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
-                            'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
-                            Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                            Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                            Dim exeNUMMAX As New DataTable()
-                            preexeNUMMAX.Fill(exeNUMMAX)
-                        Else
-                            MensajeBox("No se ha asignado la cita: " + CType(row.Cells(1).FindControl("txt_nombre_cita1"), Label).Text + " porque ya existe.", True)
-                        End If
-                        'txt_nombre.Focus()
-                        'Listar_GANTT()   
-                        'Pasa asignar y desasignar automatico
-                        'Else
-                        '    a1 = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
-                        '    a3 = CType(row.Cells(1).FindControl("lbl_año"), Label).Text
-                        '    a4 = CType(row.Cells(1).FindControl("lbl_producto"), Label).Text
-                        '    a = CType(row.Cells(1).FindControl("lbl_Actividades"), Label).Text
-                        '    c = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
-                        '    a2 = CType(row.Cells(1).FindControl("lbl_Hito"), Label).Text
-                        '    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
-                        '    Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
-                        '    Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
-                        '    Dim exeNUMMAX1 As New DataTable()
-                        '    preexeNUMMAX1.Fill(exeNUMMAX1)
-                        '    If exeNUMMAX1.Rows.Count <> 0 Then
-                        '        CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
-                        '        Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                        '        Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                        '        Dim exeNUMMAX As New DataTable()
-                        '        preexeNUMMAX.Fill(exeNUMMAX)
-                        '        'txt_nombre.Focus()
-                        '        'Listar_GANTT()
-                        ' End If
+        '   If drop_operacion.SelectedIndex <> 0 And txt_nombre_cita2.Text <> "" And txt_lugar2.Text <> "" And txt_fecha_r2.Text <> "" And txt_horai2.Text <> "" And txt_horat2.Text <> "" Then
+        CN.Open()
+        For Each row As GridViewRow In Grid_GANTT.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(1).FindControl("chkRow"), CheckBox)
+                If chkRow.Checked Then
+                    a1 = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
+                    a3 = CType(row.Cells(1).FindControl("lbl_año"), Label).Text
+                    a4 = CType(row.Cells(1).FindControl("lbl_producto"), Label).Text
+                    c = CType(row.Cells(1).FindControl("lbl_Actividades1"), Label).Text
+                    a2 = CType(row.Cells(1).FindControl("lbl_Hito"), Label).Text
+                    a5 = CType(row.Cells(1).FindControl("lbl_Detalle_Actividad"), Label).Text
+                    'lbl_Nombre_operacion
+                    If CType(row.Cells(1).FindControl("lbl_Nombre_operacion"), Label).Text = "" Then
+                        CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "'"
+                    Else
+                        CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "' AND Nombre_Cita='" + CType(row.Cells(1).FindControl("txt_nombre_cita1"), TextBox).Text + "'"
                     End If
+                    Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
+                    Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
+                    Dim exeNUMMAX1 As New DataTable()
+                    preexeNUMMAX1.Fill(exeNUMMAX1)
+                    If exeNUMMAX1.Rows.Count = 0 Then
+                        CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
+                        'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
+                        Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
+                        Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
+                        Dim exeNUMMAX As New DataTable()
+                        preexeNUMMAX.Fill(exeNUMMAX)
+                    Else
+                        MensajeBox("No se ha eliminado: " + CType(row.Cells(1).FindControl("txt_nombre_cita1"), Label).Text + " porque no existe.", True)
+                    End If
+                    'txt_nombre.Focus()
+                    'Listar_GANTT()   
+                    'Pasa asignar y desasignar automatico
+                    'Else
+                    '    a1 = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
+                    '    a3 = CType(row.Cells(1).FindControl("lbl_año"), Label).Text
+                    '    a4 = CType(row.Cells(1).FindControl("lbl_producto"), Label).Text
+                    '    a = CType(row.Cells(1).FindControl("lbl_Actividades"), Label).Text
+                    '    c = CType(row.Cells(1).FindControl("lbl_Sistema"), Label).Text
+                    '    a2 = CType(row.Cells(1).FindControl("lbl_Hito"), Label).Text
+                    '    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
+                    '    Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
+                    '    Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
+                    '    Dim exeNUMMAX1 As New DataTable()
+                    '    preexeNUMMAX1.Fill(exeNUMMAX1)
+                    '    If exeNUMMAX1.Rows.Count <> 0 Then
+                    '        CONSULTAENC = "DELETE FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c
+                    '        Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
+                    '        Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
+                    '        Dim exeNUMMAX As New DataTable()
+                    '        preexeNUMMAX.Fill(exeNUMMAX)
+                    '        'txt_nombre.Focus()
+                    '        'Listar_GANTT()
+                    ' End If
                 End If
-            Next
-            MensajeBox("Se ha asignado la cita a las actividades seleccionadas", True)
-            CN.Close()
-        Else
-            If drop_operacion.SelectedIndex = 0 Then
-                MensajeBox("Debe indicar el tipo de operación (lista desplegable)", True)
-            Else
-                MensajeBox("Faltan campos por llenar", True)
             End If
-        End If
+        Next
+        MensajeBox("Se ha eliminado las actividades seleccionadas", True)
+        CN.Close()
+
         Listar_GANTT()
     End Sub
-
     Protected Sub btn_editar_1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_editar_1.Click
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
