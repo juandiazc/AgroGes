@@ -734,7 +734,6 @@ Partial Class Modulo_Ingreso_de_Datos_frmEncuesta
     Protected Sub EjecutarScriptConAjax(ByVal myscript As String)
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Script", myscript, True)
     End Sub
-
     Protected Sub EjecutarScriptSinAjax(ByVal myscript As String)
         Dim cs As ClientScriptManager = Page.ClientScript
         cs.RegisterClientScriptBlock(Me.GetType(), "Mensaje", myscript, True)

@@ -265,7 +265,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
     Protected Sub Grid_GANTT_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles Grid_GANTT.RowCommand
         Dim c As String
         Dim a5 As String
-
+        Dim nombrecita As String
         Dim a1 As String '= drop_sistema.SelectedIndex
         Dim a2 As String ' = drop_hito.SelectedIndex
         Dim a3 As String '= drop_año.SelectedIndex
@@ -319,27 +319,35 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 a4 = CType(fila.FindControl("lbl_producto"), Label).Text
                 c = CType(fila.FindControl("lbl_Actividades1"), Label).Text
                 a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
-                a5 = CType(fila.FindControl("lbl_Detalle_Actividad"), Label).Text
+                a5 = CType(fila.FindControl("lbl_ID_Operacion"), Label).Text
+                If a5 = "" Then
+                    CONSULTAENC1 = "SELECT MAX(ggac.ID_op)+1 AS M FROM GES_GANTT_ASIGNAR_CITA ggac"
+                    Dim NUMMAXPES3 As New SqlCommand(CONSULTAENC1, CN)
+                    Dim preexeNUMMAX3 As New SqlDataAdapter(NUMMAXPES3)
+                    Dim exeNUMMAX3 As New DataTable()
+                    preexeNUMMAX3.Fill(exeNUMMAX3)
+                    a5 = exeNUMMAX3.Rows(0)("M").ToString
+                    nombrecita = ""
+                End If
                 CONSULTAENC1 = "SELECT CAST (CASE WHEN MAX(gac.ID_op) IS NULL THEN 1 ELSE MAX(gac.ID_op)+1 END AS Varchar(10)) AS ID_op FROM GES_GANTT_ASIGNAR_CITA gac"
                 Dim NUMMAXPES2 As New SqlCommand(CONSULTAENC1, CN)
                 Dim preexeNUMMAX2 As New SqlDataAdapter(NUMMAXPES2)
                 Dim exeNUMMAX2 As New DataTable()
                 preexeNUMMAX2.Fill(exeNUMMAX2)
-                Id_op = exeNUMMAX2.Rows(0).Item("ID_op").ToString
-                If CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex <> 0 Then
-                    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "'"
-                ElseIf CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex = 0 Then
-                    CONSULTAENC1 = ""
-                Else
-                    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND Operacion='" + aux + "' AND Nombre_Cita='" + CType(fila.FindControl("txt_nombre_cita1"), TextBox).Text + "'"
-                End If
 
+                If CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex <> 0 Then
+                    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND ID_op='" + a5 + "'"
+                ElseIf CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex = 0 Then
+                    CONSULTAENC1 = "SELECT 0"
+                Else
+                    CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND ID_op" + a5 + "' AND Nombre_Cita='" + CType(fila.FindControl("txt_nombre_cita1"), TextBox).Text + "'"
+                End If
                 Dim NUMMAXPES1 As New SqlCommand(CONSULTAENC1, CN)
                 Dim preexeNUMMAX1 As New SqlDataAdapter(NUMMAXPES1)
                 Dim exeNUMMAX1 As New DataTable()
                 preexeNUMMAX1.Fill(exeNUMMAX1)
                 If exeNUMMAX1.Rows.Count = 0 Then
-                    CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + CType(fila.FindControl("txt_nombre_cita1"), TextBox).Text + "','" + CType(fila.FindControl("txt_lugar1"), TextBox).Text + "','" + CType(fila.FindControl("txt_fecha_r1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horai1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horat1"), TextBox).Text + "','" + CType(fila.FindControl("text_coment1"), TextBox).Text + "','" + aux + "'"
+                    CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + a5 + "','" + CType(fila.FindControl("lbl_Detalle_Actividad"), Label).Text + "','" + CType(fila.FindControl("txt_nombre_cita1"), TextBox).Text + "','" + CType(fila.FindControl("txt_lugar1"), TextBox).Text + "','" + CType(fila.FindControl("txt_fecha_r1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horai1"), TextBox).Text + "','" + CType(fila.FindControl("txt_horat1"), TextBox).Text + "','" + CType(fila.FindControl("text_coment1"), TextBox).Text + "','" + aux + "'"
                     Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
                     Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                     Dim exeNUMMAX As New DataTable()
@@ -357,15 +365,14 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 a2 = CType(fila.FindControl("lbl_Hito"), Label).Text
                 a5 = CType(fila.FindControl("lbl_ID_Operacion"), Label).Text
 
-
                 CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET Nombre_cita='" + CType(fila.FindControl("txt_nombre_cita"), TextBox).Text + "', Lugar='" + CType(fila.FindControl("txt_lugar"), TextBox).Text + "', Fecha_Realizacion='" + CType(fila.FindControl("txt_fecha_r"), TextBox).Text + "',Hora_Inicio='" + CType(fila.FindControl("txt_horai"), TextBox).Text + "',Hora_Termino='" + CType(fila.FindControl("txt_horat"), TextBox).Text + "',Comentarios='" + CType(fila.FindControl("text_coment1"), TextBox).Text + "' WHERE ID_S=" + a1 + " AND ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_H=" + a2 + " AND ID_Ac='" + c + "' AND ID_op='" + a5 + "'"
                 Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
                 Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                 Dim exeNUMMAX As New DataTable()
                 preexeNUMMAX.Fill(exeNUMMAX)
                 'Listar_GANTT()
-                Case "Salir"
-                    
+            Case "Salir"
+
         End Select
 
         CN.Close()
