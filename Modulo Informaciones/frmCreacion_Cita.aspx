@@ -4,8 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <head>
-<link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="../Recursos/jquery-ui/timepicker/jquery.ui.timepicker.css" />
 </head>
   <!--Hoja de estilos del calendario
   <link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -182,9 +180,16 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion1" runat="server" Text='Nombre de <%# bind("Nombre_cita") %>' Width="140px"></asp:Label></td>
+                                                        <asp:Label ID="lbl_drop_op" runat="server" Text='Tipo de operación' Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_nombre_cita1"  runat="server" ></asp:TextBox></td>
+                                                        <asp:TextBox ID="TextBox1"  runat="server" ></asp:TextBox></td>
+                                                </tr>                                                
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        <asp:Label ID="lbl_operacion1" runat="server" Text='Nombre de operación' Width="140px"></asp:Label></td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                       <asp:DropDownList ID="drop_editar" runat="server">
+                                                        </asp:DropDownList></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
@@ -477,6 +482,13 @@
                                                     <td style="width: 130px; text-align: justify">
                                                         <asp:TextBox ID="lbl_nombre_3"  runat="server" Text='' Width="54px"></asp:TextBox>
                                                         <asp:Button ID="btn_cargar" runat="server" CssClass="Boton" Text="..." Width="50px"   /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                    </td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                        <asp:DropDownList ID="drop_editar" runat="server">
+                                                        </asp:DropDownList></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">

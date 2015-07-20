@@ -202,7 +202,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
             Response.Redirect("../PaginaDeError.aspx")
         End Try
     End Sub
-
     Sub MarcarCheck()
         Try
             CapaEntidadGANTT.propiedad_ID_S = drop_sistema.SelectedIndex
@@ -260,7 +259,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Catch ex As Exception
         End Try
     End Sub
-
 #End Region
     Protected Sub Grid_GANTT_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles Grid_GANTT.RowCommand
         Dim c As String
@@ -295,7 +293,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 End If
             End If
         Next
-        'HOla prueba 
+        'HOla prueba
         CN.Open()
             Select Case e.CommandName
             Case "Eliminar"
@@ -334,7 +332,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 Dim preexeNUMMAX2 As New SqlDataAdapter(NUMMAXPES2)
                 Dim exeNUMMAX2 As New DataTable()
                 preexeNUMMAX2.Fill(exeNUMMAX2)
-
                 If CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex <> 0 Then
                     CONSULTAENC1 = "SELECT * FROM GES_GANTT_ASIGNAR_CITA WHERE ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_S=" + a1 + " AND ID_H=" + a2 + " AND ID_Ac=" + c + " AND ID_op='" + a5 + "'"
                 ElseIf CType(fila.FindControl("lbl_Nombre_operacion"), Label).Text = "" And drop_operacion.SelectedIndex = 0 Then
