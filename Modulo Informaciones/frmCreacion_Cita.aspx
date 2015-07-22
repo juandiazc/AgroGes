@@ -4,6 +4,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <head>
+  <link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="../Recursos/jquery-ui/timepicker/jquery.ui.timepicker.css" />
 </head>
   <!--Hoja de estilos del calendario
   <link href="../Recursos/jquery-ui/css/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -166,10 +168,10 @@
 
     <asp:Panel ID="pnl_mantener_noticias" runat="server" CssClass="tiny" GroupingText="">
         <asp:Label ID="lbl_mensaje_noticias" runat="server" CssClass="tiny" Width="32px"></asp:Label><br />
-        <asp:GridView ID="Grid_GANTT" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="altrowstyle" CssClass="grid" PageSize="50"
+        <asp:GridView ID="Grid_GANTT" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="altrowstyle" CssClass="grid" PageSize="15"
             Width="132px" Height="32px" AutoGenerateColumns="False">
             <Columns>
-              <asp:TemplateField HeaderText ="Agregar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="85px" Visible="True">
+              <asp:TemplateField HeaderText ="Agregar">
                  <ItemTemplate>
                     <asp:ImageButton ID="Agregar" runat="server" CommandName="Agregar" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" ImageUrl="~/Recursos/Images/Button-Add-icon.PNG" />
                                <asp:Panel ID="pnl_contacto_1" runat="server" CssClass="tiny" Style="border-right: black 2px solid;
@@ -182,14 +184,13 @@
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         <asp:Label ID="lbl_drop_op" runat="server" Text='Tipo de operación' Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="TextBox1"  runat="server" ></asp:TextBox></td>
+                                                    <asp:DropDownList ID="drop_agregar" runat="server" Width="142px"></asp:DropDownList></td>
                                                 </tr>                                                
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         <asp:Label ID="lbl_operacion1" runat="server" Text='Nombre de operación' Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                       <asp:DropDownList ID="drop_editar" runat="server">
-                                                        </asp:DropDownList></td>
+                                                   <asp:TextBox ID="txt_nombre_cita1" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
@@ -234,8 +235,9 @@
                                         popupcontrolid="pnl_contacto_1" targetcontrolid="Agregar"></cc1:modalpopupextender>
                                       
                  </ItemTemplate>             
+                  <ItemStyle HorizontalAlign="Center" Width="85px" />
             </asp:TemplateField>                         
-              <asp:TemplateField HeaderText ="Editar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="85px" Visible="True">
+              <asp:TemplateField HeaderText ="Editar">
                  <ItemTemplate>
                     <asp:ImageButton ID="Editar" runat="server" CommandName="Editar" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" ImageUrl="~/Recursos/Images/page_edit.gif" />
                                <asp:Panel ID="pnl_contacto" runat="server" CssClass="tiny" Style="border-right: black 2px solid;
@@ -246,7 +248,7 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion2" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                        <asp:Label ID="lbl_operacion2" runat="server" Text="Nombre de Operación" Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
                                                         
                                                         <asp:TextBox ID="txt_nombre_cita" runat="server" Text='<%# bind("Nombre_cita") %>'></asp:TextBox></td>
@@ -294,6 +296,7 @@
                                         popupcontrolid="pnl_contacto" targetcontrolid="Editar"></cc1:modalpopupextender>
                                       
                  </ItemTemplate>             
+                  <ItemStyle HorizontalAlign="Center" Width="85px" />
             </asp:TemplateField> 
             <asp:ButtonField AccessibleHeaderText="Eliminar" ButtonType="Image" CommandName="Eliminar"
                     HeaderText="Eliminar" ImageUrl="~/Recursos/Images/delete.PNG" Text="Bot&#243;n" >
@@ -314,7 +317,7 @@
                     <HeaderStyle CssClass="tiny" />
                     <ItemStyle HorizontalAlign="Center" Width="5%" />
                 </asp:TemplateField>
-            <asp:TemplateField HeaderText="Año">
+            <asp:TemplateField HeaderText="A&#241;o">
                   <ItemTemplate>
                         <asp:Label ID="lbl_año" runat="server" CssClass="tiny" Text='<%# Eval("Año") %>' Width="50px" Height="15" Font-Size="Small" ></asp:Label>
                     </ItemTemplate>
@@ -328,7 +331,7 @@
                     <HeaderStyle CssClass="tiny" />
                     <ItemStyle HorizontalAlign="Center" Width="5%" />
                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="Actividad1" Visible="false">
+                 <asp:TemplateField HeaderText="Actividad1" Visible="False">
                   <ItemTemplate>
                         <asp:Label ID="lbl_Actividades1" runat="server" CssClass="tiny" Text='<%# Eval("ID_Ac1") %>' Width="300px" Height="15" Font-Size="Small" style="text-align: Left;" ></asp:Label>
                     </ItemTemplate>
@@ -363,7 +366,7 @@
                     <HeaderStyle CssClass="tiny" />
                     <ItemStyle HorizontalAlign="Left" Width="5%" />
                 </asp:TemplateField>   
-                <asp:TemplateField HeaderText="Nombre operación">
+                <asp:TemplateField HeaderText="Nombre operaci&#243;n">
                   <ItemTemplate>
                         <asp:Label ID="lbl_Nombre_operacion" runat="server" CssClass="tiny" Text='<%# Eval("Nombre_cita") %>' Width="180px" Height="15" Font-Size="Small"  style="text-align: Left;" ></asp:Label>
                     </ItemTemplate>
@@ -480,14 +483,14 @@
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         ID</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="lbl_nombre_3"  runat="server" Text='' Width="54px"></asp:TextBox>
+                                                        <asp:TextBox ID="txt_id"  runat="server" Text='' Width="54px"></asp:TextBox>
                                                         <asp:Button ID="btn_cargar" runat="server" CssClass="Boton" Text="..." Width="50px"   /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                    <td class="tiny" style="width: 130px; text-align: justify; height: 24px;">
                                                     </td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:DropDownList ID="drop_editar" runat="server">
+                                                    <td style="width: 130px; text-align: justify; height: 24px;">
+                                                        <asp:DropDownList ID="drop_editar" runat="server" Width="142px">
                                                         </asp:DropDownList></td>
                                                 </tr>
                                                 <tr>

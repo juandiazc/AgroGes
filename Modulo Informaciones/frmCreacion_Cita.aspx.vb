@@ -11,7 +11,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
     Dim DsGANTTs2 As New Data.DataSet
     Dim CapaEntidadLogErrores As New LOG_ERRORES
     Dim CapaNegocioLogErrores As New LOG_ERRORES_Negocio
-
+    Dim cid As Integer
+    Dim idopaux As String
     Dim err As New CONTROL_ERRORES_class
 
     Dim Ejecucion As Integer = 0
@@ -27,10 +28,19 @@ Partial Class Modulo_Informaciones_frmGANTT1
             Listar_GANTT()
             obtener_operacion()
             ModalPopupExtender3.Enabled = True
+            cid = 0
             For Each row As GridViewRow In Grid_GANTT.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(1).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+                        cid = cid + 1
+                        idopaux = CType(row.FindControl("lbl_ID_Operacion"), Label).Text
+                    End If
+                End If
+
                 If CType(row.FindControl("lbl_operacion"), Label).Text = "" Then
-                    CType(row.FindControl("lbl_operacion1"), Label).Text = "2"
-                    CType(row.FindControl("lbl_operacion2"), Label).Text = "2"
+                    ' CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
+                    'CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
                 Else
                     CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
                     CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
@@ -40,8 +50,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
 
         For Each row As GridViewRow In Grid_GANTT.Rows
             If CType(row.FindControl("lbl_operacion"), Label).Text = "" Then
-                CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
-                CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
+                'CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
+                'CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
             Else
                 CType(row.FindControl("lbl_operacion1"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
                 CType(row.FindControl("lbl_operacion2"), Label).Text = "Nombre de " + CType(row.FindControl("lbl_operacion"), Label).Text
@@ -271,7 +281,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Dim CONSULTAENC As String
         Dim CONSULTAENC1 As String
         Dim aux As String
-        Dim Id_op As String
+
         Dim fila As GridViewRow
         fila = Grid_GANTT.Rows.Item(e.CommandArgument)
         For Each row As GridViewRow In Grid_GANTT.Rows
@@ -293,7 +303,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 End If
             End If
         Next
-        'HOla prueba
+
         CN.Open()
             Select Case e.CommandName
             Case "Eliminar"
@@ -603,6 +613,20 @@ Partial Class Modulo_Informaciones_frmGANTT1
         Else
             pnl_contacto_4.Visible = True
             pnl_contacto_4.Enabled = True
+            If cid = 1 Then
+                Dim CONSULTAENC1 As String
+                CONSULTAENC1 = "SELECT RIGHT(CONVERT(DATETIME,[Hora_Inicio],108),8) AS Hora_Inicio ,RIGHT(CONVERT(DATETIME,[Hora_Termino],108),8) AS Hora_Termino FROM GES_GANTT_ASIGNAR_CITA WHERE ID_op='" + idopaux + "'"
+                Dim NUMMAXPES2 As New SqlCommand(CONSULTAENC1, CN)
+                Dim preexeNUMMAX2 As New SqlDataAdapter(NUMMAXPES2)
+                Dim exeNUMMAX2 As New DataTable()
+                preexeNUMMAX2.Fill(exeNUMMAX2)
+                txt_fechai.Text = exeNUMMAX2.Rows(0).Item("Hora_Inicio").ToString()
+                txt_fechat.Text = exeNUMMAX2.Rows(0).Item("Hora_Termino").ToString()
+            Else
+                txt_fechai.Text = ""
+                txt_fechat.Text = ""
+            End If
+
         End If
     End Sub
     Protected Sub btn_eliminar_1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_eliminar_1.Click
@@ -713,7 +737,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
         preexeNUMMAX2.Fill(exeNUMMAX2)
         Id_op = exeNUMMAX2.Rows(0).Item("ID_op").ToString
 
-        If drop_operacion.SelectedIndex <> 0 And txt_nombre_cita2.Text <> "" And txt_lugar2.Text <> "" And txt_fecha_r2.Text <> "" And txt_horai2.Text <> "" And txt_horat2.Text <> "" Then
             CN.Open()
             For Each row As GridViewRow In Grid_GANTT.Rows
                 If row.RowType = DataControlRowType.DataRow Then
@@ -736,7 +759,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
                         Dim exeNUMMAX1 As New DataTable()
                         preexeNUMMAX1.Fill(exeNUMMAX1)
                         If exeNUMMAX1.Rows.Count = 0 Then
-                            CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
+                        CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET  Hora_Inicio='" + CType(row.Cells(1).FindControl("txt_horai"), TextBox).Text + "',Hora_Termino='" + CType(row.Cells(1).FindControl("txt_horat"), TextBox).Text + "' WHERE ID_S=" + a1 + " AND ID_P=" + a4 + " AND ID_A=" + a3 + " AND ID_H=" + a2 + " AND ID_Ac='" + c + "' AND ID_op='" + a5 + "'"
+                        'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
                             Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
                             Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                             Dim exeNUMMAX As New DataTable()
@@ -770,20 +794,27 @@ Partial Class Modulo_Informaciones_frmGANTT1
                         ' End If
                     End If
                 End If
-            Next
-            MensajeBox("Se ha asignado la cita a las actividades seleccionadas", True)
-            CN.Close()
-        Else
-            If drop_operacion.SelectedIndex = 0 Then
-                MensajeBox("Debe indicar el tipo de operación (lista desplegable)", True)
-            Else
-                MensajeBox("Faltan campos por llenar", True)
-            End If
-        End If
-        Listar_GANTT()
-    End Sub
+        Next
 
-    Protected Sub btn_salir_4_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_salir_4.Click
-        'hola
+        MensajeBox("Se ha editado las actividades seleccionadas", True)
+            CN.Close()
+
+            Listar_GANTT()
+    End Sub
+    Protected Sub btn_cargar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_cargar.Click
+        If txt_id.Text = "" Then
+            Dim CONSULTAENC1 As String
+            CONSULTAENC1 = "SELECT RIGHT(CONVERT(DATETIME,[Hora_Inicio],108),8) AS Hora_Inicio ,RIGHT(CONVERT(DATETIME,[Hora_Termino],108),8) AS Hora_Termino FROM GES_GANTT_ASIGNAR_CITA WHERE ID_op='" + txt_id.Text + "'"
+            Dim NUMMAXPES2 As New SqlCommand(CONSULTAENC1, CN)
+            Dim preexeNUMMAX2 As New SqlDataAdapter(NUMMAXPES2)
+            Dim exeNUMMAX2 As New DataTable()
+            preexeNUMMAX2.Fill(exeNUMMAX2)
+            txt_fechai.Text = exeNUMMAX2.Rows(0).Item("Hora_Inicio").ToString()
+            txt_fechat.Text = exeNUMMAX2.Rows(0).Item("Hora_Termino").ToString()
+        Else
+            MensajeBox("Debe indicar id de operación", True)
+            txt_fechai.Text = ""
+            txt_fechat.Text = ""
+        End If
     End Sub
 End Class
