@@ -184,7 +184,13 @@
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         <asp:Label ID="lbl_drop_op" runat="server" Text='Tipo de operación' Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
-                                                    <asp:DropDownList ID="drop_agregar" runat="server" Width="142px"></asp:DropDownList></td>
+                                                    <asp:DropDownList ID="drop_agregar" runat="server" Width="142px">
+                                                      <asp:ListItem Value="0"> Seleccione operación </asp:ListItem>
+                                                      <asp:ListItem Value="1"> Cita </asp:ListItem>
+                                                      <asp:ListItem Value="2"> Salida de Capacitación </asp:ListItem>
+                                                      <asp:ListItem Value="3"> Salida de supervición </asp:ListItem>
+                                                      <asp:ListItem Value="4"> Minuta </asp:ListItem>
+                                                    </asp:DropDownList></td>
                                                 </tr>                                                
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
@@ -410,7 +416,20 @@
                                             <table style="width: 300px">                                               
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion" runat="server" Text="" Width="140px"></asp:Label></td>
+                                                        <asp:Label ID="lbl_drop_op1" runat="server" Text='Tipo de operación' Width="140px"></asp:Label></td>
+                                                    <td style="width: 130px; text-align: justify">
+                                                    <asp:DropDownList ID="drop_agregar1" runat="server" Width="142px" AutoPostBack="True">
+                                                      <asp:ListItem Value="0"> Seleccione operaci&#243;n </asp:ListItem>
+                                                      <asp:ListItem Value="1"> Cita </asp:ListItem>
+                                                      <asp:ListItem Value="2"> Salida de Capacitaci&#243;n </asp:ListItem>
+                                                      <asp:ListItem Value="3"> Salida de supervici&#243;n </asp:ListItem>
+                                                      <asp:ListItem Value="4"> Minuta </asp:ListItem>
+                                                    </asp:DropDownList></td>
+                                                </tr>    
+                                                
+                                                <tr>
+                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                        <asp:Label ID="lbl_operacion" runat="server" Text="Nombre Operación" Width="140px"></asp:Label></td>
                                                     <td style="width: 130px; text-align: justify">
                                                         <asp:TextBox ID="txt_nombre_cita2"  runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
@@ -430,13 +449,13 @@
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Inicio</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horai2" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_horai2" CssClass="tiny3" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
                                                         Hora de Termino</td>
                                                     <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horat2" CssClass="tiny2" runat="server" Text=''></asp:TextBox></td>
+                                                        <asp:TextBox ID="txt_horat2" CssClass="tiny3" runat="server" Text=''></asp:TextBox></td>
                                                 </tr>                                                
                                                 <tr>
                                                     <td class="tiny" style="width: 130px; text-align: justify">
@@ -478,43 +497,43 @@
                                         padding-bottom: 20px; border-left: black 2px solid; width: 350px; padding-top: 20px;
                                         border-bottom: black 2px solid; background-color: white" Width="416px">
                                         <span style="color: #ff0000">
-                                            <table style="width: 300px">                                               
+                                            <table style="width: 288px">                                               
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        ID</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_id"  runat="server" Text='' Width="54px"></asp:TextBox>
-                                                        <asp:Button ID="btn_cargar" runat="server" CssClass="Boton" Text="..." Width="50px"   /></td>
+                                                    <td class="tiny" style="width: 120px; text-align: justify">
+                                                        ID Operacíón</td>
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:DropDownList ID="drop_editar" runat="server" Width="138px" AutoPostBack="True" >
+                                                        </asp:DropDownList>
+                                                        </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify; height: 24px;">
+                                                    <td class="tiny" style="text-align: justify;" colspan="2">
+                                                        <asp:CheckBox ID="chk_multiple" runat="server" Text="Múltiple" Width="121px" />
+                                                        <asp:TextBox ID="txt_id"  runat="server" Text='' Width="136px" Visible="False"></asp:TextBox>
                                                     </td>
-                                                    <td style="width: 130px; text-align: justify; height: 24px;">
-                                                        <asp:DropDownList ID="drop_editar" runat="server" Width="142px">
-                                                        </asp:DropDownList></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                    <td class="tiny" style="width: 120px; text-align: justify">
                                                         Fecha de Inicio</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_fechai" runat="server" CssClass="tiny2" Text=""></asp:TextBox></td>
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:TextBox ID="txt_fechai" runat="server" CssClass="tiny3" Text=""></asp:TextBox></td>
                                                 </tr>    
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
+                                                    <td class="tiny" style="width: 120px; text-align: justify; height: 22px;">
                                                         Fecha de Término</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_fechat" runat="server" CssClass="tiny2" Text=""></asp:TextBox></td>
+                                                    <td style="width: 120px; text-align: justify; height: 22px;">
+                                                        <asp:TextBox ID="txt_fechat" runat="server" CssClass="tiny3" Text=""></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 130px; text-align: right">
+                                                    <td style="width: 120px; text-align: justify">
                                                         <asp:Button ID="btn_editar_1" runat="server" CssClass="Boton" Text="Editar" Width="50px"   /></td>                                                    
-                                                    <td style="width: 130px; text-align: right">
+                                                    <td style="width: 120px; text-align: justify">
                                                         <asp:Button ID="btn_salir_4" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
                                                 </tr>
                                             </table>
                                         </span>
                                     </asp:Panel>
-                                <cc1:modalpopupextender id="ModalPopupExtender5" Enabled="True" runat="server" backgroundcssclass="modalBackground"
+                                <cc1:modalpopupextender id="ModalPopupExtender5" Enabled="False" runat="server" backgroundcssclass="modalBackground"
                                         popupcontrolid="pnl_contacto_4" targetcontrolid="btn_editar"></cc1:modalpopupextender>           
     
     </asp:Panel>
