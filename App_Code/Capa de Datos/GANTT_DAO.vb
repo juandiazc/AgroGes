@@ -114,7 +114,7 @@ Public Class GANTT_DAO
     Public Function ListarCheck3(ByVal NOTI As GANTT) As DataSet
         Try
             Dim sp As New StoredProcedure_class("PA_CLS_GANTT_LISTAR_OPERACIONES")
-            sp.AgregarParametro("Sistema", NOTI.propiedad_Sistema)            
+            sp.AgregarParametro("Sistema", NOTI.propiedad_Sistema)
             sp.AgregarParametro("Año", NOTI.propiedad_ID_A)
             sp.AgregarParametro("Producto", NOTI.propiedad_ID_P)
             sp.AgregarParametro("Hito", NOTI.propiedad_ID_H)

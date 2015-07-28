@@ -252,48 +252,37 @@
                                         border-bottom: black 2px solid; background-color: white" Width="416px">
                                         <span style="color: #ff0000">
                                             <table style="width: 300px">                                               
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        <asp:Label ID="lbl_operacion2" runat="server" Text="Nombre de Operación" Width="140px"></asp:Label></td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        
-                                                        <asp:TextBox ID="txt_nombre_cita" runat="server" Text='<%# bind("Nombre_cita") %>'></asp:TextBox></td>
+                                                                                              <tr>
+                                                    <td class="tiny" style="width: 120px; text-align: justify">
+                                                        ID Operacíón</td>
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:DropDownList ID="drop_editar2" runat="server" Width="138px" AutoPostBack="True" >
+                                                        </asp:DropDownList>
+                                                        </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Lugar</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_lugar" runat="server" Text='<%# Eval("Lugar") %>'></asp:TextBox></td>
+                                                    <td class="tiny" style="text-align: justify;" colspan="2">
+                                                        <asp:CheckBox ID="chk_multiple2" runat="server" Text="Múltiple" Width="121px" />
+                                                        <asp:TextBox ID="txt_id2"  runat="server" Text='' Width="136px" Visible="False"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tiny" style="width: 120px; text-align: justify">
+                                                        Fecha de Inicio</td>
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:TextBox ID="txt_fechai2" runat="server" CssClass="tiny3" Text=""></asp:TextBox></td>
                                                 </tr>    
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Fecha Realización</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="txt_fecha_r" CssClass="tiny2" runat="server" Text='<%# Eval("Fecha_Realizacion") %>'></asp:TextBox></td>
-                                                </tr>     
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Inicio</td>
-                                                    <td style="width: 100px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horai" CssClass="tiny3" runat="server" Text='<%# Eval("Hora_Inicio") %>'></asp:TextBox></td>
+                                                    <td class="tiny" style="width: 120px; text-align: justify; height: 22px;">
+                                                        Fecha de Término</td>
+                                                    <td style="width: 120px; text-align: justify; height: 22px;">
+                                                        <asp:TextBox ID="txt_fechat2" runat="server" CssClass="tiny3" Text=""></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Hora de Termino</td>
-                                                    <td style="width: 100px; text-align: justify">
-                                                        <asp:TextBox ID="txt_horat" CssClass="tiny3" runat="server" Text='<%# Eval("Hora_Termino") %>'></asp:TextBox></td>
-                                                </tr>                                                
-                                                <tr>
-                                                    <td class="tiny" style="width: 130px; text-align: justify">
-                                                        Comentarios</td>
-                                                    <td style="width: 130px; text-align: justify">
-                                                        <asp:TextBox ID="text_coment" runat="server" TextMode="MultiLine" Text='<%# Eval("Comentarios") %>'></asp:TextBox></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="btn_editar" runat="server" CssClass="Boton" Text="Modificar Cita" Width="100px" CommandName="Modificar" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"  /></td>                                                    
-                                                    <td style="width: 130px; text-align: right">
-                                                        <asp:Button ID="btn_salir1" runat="server" CssClass="Boton" Text="Salir" Width="50px" CommandName="Salir" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"  /></td>
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:Button ID="btn_editar_2" runat="server" CssClass="Boton" Text="Editar" Width="50px"   /></td>                                                    
+                                                    <td style="width: 120px; text-align: justify">
+                                                        <asp:Button ID="btn_salir_5" runat="server" CssClass="Boton" Text="Salir" Width="50px"   /></td>                                                        
                                                 </tr>
                                             </table>
                                         </span>
