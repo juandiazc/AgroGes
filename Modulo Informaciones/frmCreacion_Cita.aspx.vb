@@ -382,21 +382,6 @@ Partial Class Modulo_Informaciones_frmGANTT1
                 Else
                     MensajeBox("No se ha agregado la operación porque no se ha indicado el tipo de operación", True)
                 End If
-                If chk_multiple.Checked Then
-                    CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET  Hora_Inicio='" + txt_fechai.Text + "',Hora_Termino='" + txt_fechat.Text + "' WHERE ID_op in(" + txt_id.Text + ")"
-                    'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
-                    Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                    Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                    Dim exeNUMMAX As New DataTable()
-                    preexeNUMMAX.Fill(exeNUMMAX)
-                Else
-                    CONSULTAENC = "UPDATE GES_GANTT_ASIGNAR_CITA SET  Hora_Inicio='" + txt_fechai.Text + "',Hora_Termino='" + txt_fechat.Text + "' WHERE ID_op in(" + txt_id.Text + ")"
-                    'CONSULTAENC = "INSERT INTO GES_GANTT_ASIGNAR_CITA(	ID_P,	ID_A,	ID_S,	ID_H,ID_Ac,ID_op,Ac_Detalle,Nombre_cita,Lugar,Fecha_Realizacion,Hora_Inicio,Hora_Termino,Comentarios,Operacion)SELECT " + a4 + "," + a3 + "," + a1 + "," + a2 + "," + c + ",'" + Id_op + "','" + a5 + "','" + txt_nombre_cita2.Text + "','" + txt_lugar2.Text + "','" + txt_fecha_r2.Text + "','" + txt_horai2.Text + "','" + txt_horat2.Text + "','" + text_coment2.Text + "','" + aux + "'"
-                    Dim NUMMAXPES As New SqlCommand(CONSULTAENC, CN)
-                    Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
-                    Dim exeNUMMAX As New DataTable()
-                    preexeNUMMAX.Fill(exeNUMMAX)
-                End If
             Case "Modificar"
                 a1 = CType(fila.FindControl("lbl_Sistema"), Label).Text
                 a3 = CType(fila.FindControl("lbl_año"), Label).Text
@@ -535,6 +520,7 @@ Partial Class Modulo_Informaciones_frmGANTT1
                         Dim preexeNUMMAX As New SqlDataAdapter(NUMMAXPES)
                         Dim exeNUMMAX As New DataTable()
                         preexeNUMMAX.Fill(exeNUMMAX)
+                        checkaux = checkaux + 1
                     Else
                         MensajeBox("No se ha asignado la cita: " + CType(row.Cells(1).FindControl("txt_nombre_cita1"), Label).Text + " porque ya existe.", True)
                     End If
@@ -562,8 +548,8 @@ Partial Class Modulo_Informaciones_frmGANTT1
                     '        'txt_nombre.Focus()
                     '        'Listar_GANTT()
                     ' End If
-                    checkaux = checkaux + 1
 
+                Else
 
                 End If
             End If
@@ -573,6 +559,14 @@ Partial Class Modulo_Informaciones_frmGANTT1
             MensajeBox("Debe marcar actividades para asignar operación", True)
         Else
             MensajeBox("Se ha asignado la(s) operación(es) seleccionada(s)", True)
+            drop_operacion.SelectedIndex = 0
+            drop_agregar1.SelectedIndex = 0
+            txt_nombre_cita2.Text = ""
+            txt_lugar2.Text = ""
+            txt_fecha_r2.Text = ""
+            txt_horai2.Text = ""
+            txt_horat2.Text = ""
+            text_coment2.Text = ""
         End If
 
         'Else
